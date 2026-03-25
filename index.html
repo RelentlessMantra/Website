@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relentless Mantra – Real Estate Photography</title>
+  <meta name="description" content="High-end real estate photography and video production in Atlanta. Professional imagery that sells properties faster." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2ee;
+      --gold: #b8975a;
+      --gold-light: #d4b47a;
+      --mid: #1c1c1c;
+      --muted: #6b6560;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 60%, rgba(184,151,90,0.07) 0%, transparent 70%),
+        var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(184,151,90,0.025) 80px,
+        rgba(184,151,90,0.025) 81px
+      );
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      margin-top: 1.75rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.75s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.95s forwards;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn:hover { background: var(--gold); color: var(--black); }
+
+    .btn-fill {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-fill:hover { background: var(--gold-light); }
+
+    /* ── SECTION DEFAULTS ── */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-body {
+      font-size: 0.95rem;
+      color: rgba(245,242,238,0.65);
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background: var(--mid);
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .portfolio { background: var(--black); }
+
+    .portfolio-header {
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .grid-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .grid-item:first-child { grid-row: span 2; }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: grayscale(15%);
+    }
+
+    .grid-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--mid);
+      text-align: center;
+    }
+
+    .pricing-header { margin-bottom: 4rem; }
+    .pricing-header .section-label,
+    .pricing-header .section-title { display: block; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border: 1px solid rgba(184,151,90,0.2);
+      padding: 3rem 2.25rem;
+      text-align: left;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .card:hover { border-color: var(--gold); }
+
+    .card.featured {
+      border-color: var(--gold);
+      background: rgba(184,151,90,0.05);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: -1px; right: 2rem;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+    }
+
+    .card-tier {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-price {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-price span {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--muted);
+      vertical-align: middle;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .card-features li {
+      font-size: 0.85rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: rgba(245,242,238,0.75);
+    }
+
+    .card-features li::before {
+      content: '— ';
+      color: var(--gold);
+    }
+
+    .card-turnaround {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      background: var(--black);
+    }
+
+    .contact-info .section-body { margin-bottom: 2.5rem; }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(184,151,90,0.25);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+
+    .form-group textarea { min-height: 140px; resize: vertical; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 4rem;
+      border-top: 1px solid rgba(184,151,90,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--black);
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .footer-mantra {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      section { padding: 5rem 2rem; }
+      .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .grid-item:first-child { grid-row: span 1; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    @media (max-width: 580px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.5rem; }
+      section { padding: 4rem 1.25rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Relentless Mantra</a>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <p class="hero-eyebrow">Atlanta Real Estate Photography</p>
+    <h1>Imagery that <em>sells</em><br>properties faster</h1>
+    <p class="hero-sub">High-end real estate photography &amp; video production. We relentlessly highlight every property's unique character.</p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn btn-fill">View Packages</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div>
+      <p class="section-label">Our Approach</p>
+      <h2 class="section-title">Stress-free photography that moves listings</h2>
+      <div class="divider"></div>
+      <p class="section-body">
+        RM Photography offers high-end real estate photography and video production. With years of experience in the business, we understand the importance of professional imagery in real estate. We take pride in highlighting all of your property's unique features.
+      </p>
+      <br />
+      <p class="section-body">
+        Our goal is to have your property listed for a short period of time by using up-to-date marketing tactics. Rest assured — we will relentlessly meet this goal. That's our Mantra.
+      </p>
+      <br />
+      <a href="#contact" class="btn" style="margin-top: 1rem;">Book a Session</a>
+    </div>
+    <img
+      src="https://px-web-images9.pixpa.com/NHj90ysgWNbBm6d_2c3rrTuOPCkfvK4m3dLLbBu0wPY/rs:fit:800:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjk0MjI4MzIxLXNjcmVlbnNob3QtMjAyMy0wOS0wOC1hdC0xMDU4MzEtcG0ucG5n"
+      alt="Real estate photography portfolio"
+      class="about-image"
+    />
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-header">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Featured Properties</h2>
+      <div class="divider"></div>
+      <p class="section-body">A selection of our real estate photography work across Atlanta and surrounding areas.</p>
+    </div>
+    <div class="grid">
+      <div class="grid-item">
+        <img src="https://px-web-images3.pixpa.com/E-F9_z7K864yFthAW1plo0r3OQV0c2_2nONT5TSbhyQ/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjkyODQ4ODg0LXNuaXAyMDIzMDgyMy01LnBuZw==" alt="Property photography" />
+      </div>
+      <div class="grid-item">
+        <img src="https://px-web-images2.pixpa.com/PzNUb-QceUVU4Fv_z4xvvTwgcLP2U1mtPSYQ5HWgP24/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjQyODE2Nzc3LXNuaXAyMDIyMDEyMS0xMy5wbmc=" alt="Real estate listing" />
+      </div>
+      <div class="grid-item">
+        <img src="https://px-web-images6.pixpa.com/pmxp1h6G240-3ifyDc8URnng8Ea_CFFOSqDMivU9EvM/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjkyODQ4OTUxLXNuaXAyMDIzMDgyMy00LnBuZw==" alt="Property interior" />
+      </div>
+      <div class="grid-item">
+        <img src="https://px-web-images6.pixpa.com/vOThvlkuit9SA4FxBYHPgfD8pN-3ZjxlHVn_cjJK2QY/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjkyODQ4OTY2LXNuaXAyMDIzMDgyMy02LnBuZw==" alt="Exterior photography" />
+      </div>
+      <div class="grid-item">
+        <img src="https://px-web-images3.pixpa.com/yYZOC3Ca-DI9gtN04aCkmC5o5IcqYeJRuyPWbCXbrsk/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjkyODQ4OTg3LXNuaXAyMDIzMDgyMy03LnBuZw==" alt="Property showcase" />
+      </div>
+      <div class="grid-item">
+        <img src="https://px-web-images7.pixpa.com/mCqgXTFMcuK5-w4gVbQepz0ItPjcsFhj_1WIAVSczZU/rs:fit:1000:0/q:80/czM6Ly9waXhwYS10ZXN0L2NvbS9sYXJnZS8zNzI0Ny8zNzI0Ny0xNjkyODQ5NDIxLXNuaXAyMDIzMDgyMy05LnBuZw==" alt="Night photography" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-header">
+      <p class="section-label">Packages</p>
+      <h2 class="section-title">Transparent Pricing</h2>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="card">
+        <p class="card-tier">Starter</p>
+        <div class="card-price">$299 <span>/ One Property</span></div>
+        <p class="card-desc">Perfect for residential listings needing professional photography.</p>
+        <ul class="card-features">
+          <li>Two-hour Session</li>
+          <li>Engagement Session</li>
+          <li>Online Gallery</li>
+          <li>Online Proofing</li>
+        </ul>
+        <p class="card-turnaround">Turnaround ~ 48 hours</p>
+        <a href="#contact" class="btn" style="width:100%; text-align:center;">Book Now</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="card featured">
+        <div class="card-badge">Most Popular</div>
+        <p class="card-tier">Pro</p>
+        <div class="card-price">$499 <span>/ Multi Property</span></div>
+        <p class="card-desc">Day &amp; night coverage with additional lighting enhancements.</p>
+        <ul class="card-features">
+          <li>Three-hour Session</li>
+          <li>Day &amp; Night Session</li>
+          <li>Additional Lighting Touch-ups</li>
+          <li>Online Gallery</li>
+          <li>Online Proofing</li>
+        </ul>
+        <p class="card-turnaround">Turnaround ~ 72 hours</p>
+        <a href="#contact" class="btn btn-fill" style="width:100%; text-align:center;">Book Now</a>
+      </div>
+
+      <!-- Advanced -->
+      <div class="card">
+        <p class="card-tier">Advanced</p>
+        <div class="card-price">$999 <span>/ Commercial</span></div>
+        <p class="card-desc">Full-scale commercial property coverage with drone &amp; video options.</p>
+        <ul class="card-features">
+          <li>Multiple Sessions</li>
+          <li>Drone / Video Content Options</li>
+          <li>Online Gallery</li>
+          <li>Online Proofing</li>
+        </ul>
+        <p class="card-turnaround">Turnaround ~ 5 Business Days</p>
+        <a href="#contact" class="btn" style="width:100%; text-align:center;">Book Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-info">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Book your appointment today</h2>
+      <div class="divider"></div>
+      <p class="section-body">Ready to elevate your listings? Reach out and we'll get your session scheduled. We typically respond within 24 hours.</p>
+    </div>
+    <div class="contact-form">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your property and what you're looking for..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-fill" style="width:100%; text-align:center; font-size:0.75rem; letter-spacing:0.22em;">Send Message</button>
+        <p id="form-msg" style="margin-top:1rem; font-size:0.8rem; color:var(--gold); display:none;">✓ Message sent! We'll be in touch soon.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Relentless Mantra</span>
+    <span class="footer-mantra">energy is not created nor destroyed</span>
+    <span style="font-size:0.75rem; color:var(--muted);">© 2024 RM Photography</span>
+  </footer>
+
+  <script>
+    // Simple form handler (replace with your own backend / Formspree / etc.)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { msg.style.display = 'none'; }, 5000);
+    }
+
+    // Subtle scroll-in for cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, .grid-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
